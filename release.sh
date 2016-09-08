@@ -7,11 +7,10 @@ export GITHUB_REPO=UIViewLayoutHelper
 export GITHUB_TOKEN=$(cat ~/.github_token)
 
 PRODUCT_NAME=LayoutHelper
-UPLOAD_NAME=LayoutHelper
 TAG=$1
 
 carthage build --no-skip-current --platform iOS
-carthage archive $PRODUCT_NAME
+carthage archive --project-directory .
 
 git tag -a -m "$TAG release" $TAG
 git push --tags

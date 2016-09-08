@@ -25,12 +25,12 @@ public enum AutolayoutConstraint: String, AutolayoutConstraintType {
 public extension Dictionary where Key: AutolayoutConstraintType, Value: NSLayoutConstraint {
 
   public func activate() -> Dictionary {
-    NSLayoutConstraint.activateConstraints(Array(values))
+    NSLayoutConstraint.activate(Array(values))
     return self
   }
 
   public func deactivate() -> Dictionary {
-    NSLayoutConstraint.deactivateConstraints(Array(values))
+    NSLayoutConstraint.deactivate(Array(values))
     return self
   }
 
@@ -47,54 +47,54 @@ public extension UIView {
     public typealias ConstraintsDictionary = [AutolayoutConstraint: NSLayoutConstraint]
 
     init(view: UIView?) {
-      self.view = view
+      self.theView = view
       view?.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    private weak var view: UIView?
+    fileprivate weak var theView: UIView?
 
     // MARK: Size
 
-    func constrainedToSize(size: CGSize) -> ConstraintsDictionary {
-      precondition(view != nil, "View must not be nil")
+    func constrained(to size: CGSize) -> ConstraintsDictionary {
+      precondition(theView != nil, "View must not be nil")
       return [
-        .Width: view!.widthAnchor.constraintEqualToConstant(size.width),
-        .Height: view!.heightAnchor.constraintEqualToConstant(size.height)
+        .Width: theView!.widthAnchor.constraint(equalToConstant: size.width),
+        .Height: theView!.heightAnchor.constraint(equalToConstant: size.height)
       ].activate()
     }
 
     // MARK: Edges
 
-    func fillInView(
-      toView: UIView,
-      inset: UIEdgeInsets = UIEdgeInsetsZero,
+    func fill(
+      in view: UIView,
+      inset: UIEdgeInsets = UIEdgeInsets.zero,
       margins: Bool = false
     ) -> ConstraintsDictionary {
       var constraints = ConstraintsDictionary()
 
-      fillHorizontallyInView(toView, leading: inset.left, trailing: inset.right, margins: margins).forEach {
+      fillHorizontally(in: view, leading: inset.left, trailing: inset.right, margins: margins).forEach {
         (key, value) in constraints[key] = value
       }
 
-      fillVerticallyInView(toView, top: inset.top, bottom: inset.bottom, margins: margins).forEach {
+      fillVertically(in: view, top: inset.top, bottom: inset.bottom, margins: margins).forEach {
         (key, value) in constraints[key] = value
       }
 
       return constraints
     }
 
-    func limitInView(
-      toView: UIView,
-      inset: UIEdgeInsets = UIEdgeInsetsZero,
+    func limit(
+      in view: UIView,
+      inset: UIEdgeInsets = UIEdgeInsets.zero,
       margins: Bool = false
     ) -> ConstraintsDictionary {
       var constraints = ConstraintsDictionary()
 
-      limitHorizontallyInView(toView, leading: inset.left, trailing: inset.right, margins: margins).forEach {
+      limitHorizontally(in: view, leading: inset.left, trailing: inset.right, margins: margins).forEach {
         (key, value) in constraints[key] = value
       }
 
-      limitVerticallyInView(toView, top: inset.top, bottom: inset.bottom, margins: margins).forEach {
+      limitVertically(in: view, top: inset.top, bottom: inset.bottom, margins: margins).forEach {
         (key, value) in constraints[key] = value
       }
 
@@ -103,88 +103,88 @@ public extension UIView {
 
     // MARK: Horizontal edges
 
-    func fillHorizontallyInView(
-      toView: UIView,
+    func fillHorizontally(
+      in view: UIView,
       leading: CGFloat = 0,
       trailing: CGFloat = 0,
       margins: Bool = false
     ) -> ConstraintsDictionary {
-      precondition(view != nil, "View is nil")
-      let leadingAnchor = margins ? toView.layoutMarginsGuide.leadingAnchor : toView.leadingAnchor
-      let trailingAnchor = margins ? toView.layoutMarginsGuide.trailingAnchor : toView.trailingAnchor
+      precondition(theView != nil, "View is nil")
+      let leadingAnchor = margins ? view.layoutMarginsGuide.leadingAnchor : view.leadingAnchor
+      let trailingAnchor = margins ? view.layoutMarginsGuide.trailingAnchor : view.trailingAnchor
       return [
-        .Leading: view!.leadingAnchor.constraintEqualToAnchor(leadingAnchor, constant: leading),
-        .Trailing: trailingAnchor.constraintEqualToAnchor(view!.trailingAnchor, constant: trailing)
+        .Leading: theView!.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading),
+        .Trailing: trailingAnchor.constraint(equalTo: theView!.trailingAnchor, constant: trailing)
       ].activate()
     }
 
-    func limitHorizontallyInView(
-      toView: UIView,
+    func limitHorizontally(
+      in view: UIView,
       leading: CGFloat = 0,
       trailing: CGFloat = 0,
       margins: Bool = false
     ) -> ConstraintsDictionary {
-      precondition(view != nil, "View is nil")
-      let leadingAnchor = margins ? toView.layoutMarginsGuide.leadingAnchor : toView.leadingAnchor
-      let trailingAnchor = margins ? toView.layoutMarginsGuide.trailingAnchor : toView.trailingAnchor
+      precondition(theView != nil, "View is nil")
+      let leadingAnchor = margins ? view.layoutMarginsGuide.leadingAnchor : view.leadingAnchor
+      let trailingAnchor = margins ? view.layoutMarginsGuide.trailingAnchor : view.trailingAnchor
       return [
-        .Leading: view!.leadingAnchor.constraintGreaterThanOrEqualToAnchor(leadingAnchor, constant: leading),
-        .Trailing: trailingAnchor.constraintGreaterThanOrEqualToAnchor(view!.trailingAnchor, constant: trailing)
+        .Leading: theView!.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: leading),
+        .Trailing: trailingAnchor.constraint(greaterThanOrEqualTo: theView!.trailingAnchor, constant: trailing)
       ].activate()
     }
 
     // MARK: Vertical edges
 
-    func fillVerticallyInView(
-      toView: UIView,
+    func fillVertically(
+      in view: UIView,
       top: CGFloat = 0,
       bottom: CGFloat = 0,
       margins: Bool = false
     ) -> ConstraintsDictionary {
-      precondition(view != nil, "View is nil")
-      let topAnchor = margins ? toView.layoutMarginsGuide.topAnchor : toView.topAnchor
-      let bottomAnchor = margins ? toView.layoutMarginsGuide.bottomAnchor : toView.bottomAnchor
+      precondition(theView != nil, "View is nil")
+      let topAnchor = margins ? view.layoutMarginsGuide.topAnchor : view.topAnchor
+      let bottomAnchor = margins ? view.layoutMarginsGuide.bottomAnchor : view.bottomAnchor
       return [
-        .Top: view!.topAnchor.constraintEqualToAnchor(topAnchor, constant: top),
-        .Bottom: bottomAnchor.constraintEqualToAnchor(view!.bottomAnchor, constant: bottom)
+        .Top: theView!.topAnchor.constraint(equalTo: topAnchor, constant: top),
+        .Bottom: bottomAnchor.constraint(equalTo: theView!.bottomAnchor, constant: bottom)
       ].activate()
     }
 
-    func limitVerticallyInView(
-      toView: UIView,
+    func limitVertically(
+      in view: UIView,
       top: CGFloat = 0,
       bottom: CGFloat = 0,
       margins: Bool = false
     ) -> ConstraintsDictionary {
-      precondition(view != nil, "View is nil")
-      let topAnchor = margins ? toView.layoutMarginsGuide.topAnchor : toView.topAnchor
-      let bottomAnchor = margins ? toView.layoutMarginsGuide.bottomAnchor : toView.bottomAnchor
+      precondition(theView != nil, "View is nil")
+      let topAnchor = margins ? view.layoutMarginsGuide.topAnchor : view.topAnchor
+      let bottomAnchor = margins ? view.layoutMarginsGuide.bottomAnchor : view.bottomAnchor
       return [
-        .Top: view!.topAnchor.constraintGreaterThanOrEqualToAnchor(topAnchor, constant: top),
-        .Bottom: bottomAnchor.constraintGreaterThanOrEqualToAnchor(view!.bottomAnchor, constant: bottom)
+        .Top: theView!.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: top),
+        .Bottom: bottomAnchor.constraint(greaterThanOrEqualTo: theView!.bottomAnchor, constant: bottom)
       ].activate()
     }
 
     // MARK: Centering
 
-    func centerInView(inView: UIView, offset: CGPoint = CGPoint.zero) -> ConstraintsDictionary {
+    func center(in view: UIView, offset: CGPoint = CGPoint.zero) -> ConstraintsDictionary {
       var constraints = ConstraintsDictionary()
-      centerHorizontallyInView(inView, constant: offset.x).forEach { (key, value) in constraints[key] = value }
-      centerVerticallyInView(inView, constant: offset.y).forEach { (key, value) in constraints[key] = value }
+      centerHorizontally(in: view, constant: offset.x).forEach { (key, value) in constraints[key] = value }
+      centerVertically(in: view, constant: offset.y).forEach { (key, value) in constraints[key] = value }
       return constraints
     }
 
-    func centerHorizontallyInView(inView: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
-      precondition(view != nil, "View is nil")
+    func centerHorizontally(in view: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
+      precondition(theView != nil, "View is nil")
       return [
-        .CenterX: view!.centerXAnchor.constraintEqualToAnchor(inView.centerXAnchor, constant: constant)
+        .CenterX: theView!.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: constant)
       ].activate()
     }
 
-    func centerVerticallyInView(inView: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
-      precondition(view != nil, "View is nil")
+    func centerVertically(in view: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
+      precondition(theView != nil, "View is nil")
       return [
-        .CenterY: view!.centerYAnchor.constraintEqualToAnchor(inView.centerYAnchor, constant: constant)
+        .CenterY: theView!.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant)
       ].activate()
     }
 
@@ -198,80 +198,80 @@ public extension UIView.Autolayout {
 
   // MARK: Edges
 
-  func fill(inset: UIEdgeInsets = UIEdgeInsetsZero, margins: Bool = false) -> ConstraintsDictionary {
-    let superview = view!.superview
+  func fill(to inset: UIEdgeInsets = UIEdgeInsets.zero, margins: Bool = false) -> ConstraintsDictionary {
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return fillInView(superview!, inset: inset, margins: margins)
+    return fill(in: superview!, inset: inset, margins: margins)
   }
 
-  func limit(inset: UIEdgeInsets = UIEdgeInsetsZero, margins: Bool = false) -> ConstraintsDictionary {
-    let superview = view!.superview
+  func limit(to inset: UIEdgeInsets = UIEdgeInsets.zero, margins: Bool = false) -> ConstraintsDictionary {
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return limitInView(superview!, inset: inset, margins: margins)
+    return limit(in: superview!, inset: inset, margins: margins)
   }
 
   // MARK: Horizontal edges
 
   func fillHorizontally(
-    leading leading: CGFloat = 0,
+    leading: CGFloat = 0,
     trailing: CGFloat = 0,
     margins: Bool = false
   ) -> ConstraintsDictionary {
-    let superview = view!.superview
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return fillHorizontallyInView(superview!, leading: leading, trailing: trailing, margins: margins)
+    return fillHorizontally(in: superview!, leading: leading, trailing: trailing, margins: margins)
   }
 
   func limitHorizontally(
-    leading leading: CGFloat = 0,
+    leading: CGFloat = 0,
     trailing: CGFloat = 0,
     margins: Bool = false
   ) -> ConstraintsDictionary {
-    let superview = view!.superview
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return limitHorizontallyInView(superview!, leading: leading, trailing: trailing, margins: margins)
+    return limitHorizontally(in: superview!, leading: leading, trailing: trailing, margins: margins)
   }
 
   // MARK: Vertical edges
 
   func fillVertically(
-    top top: CGFloat = 0,
+    top: CGFloat = 0,
     bottom: CGFloat = 0,
     margins: Bool = false
   ) -> ConstraintsDictionary {
-    let superview = view!.superview
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return fillVerticallyInView(superview!, top: top, bottom: bottom, margins: margins)
+    return fillVertically(in: superview!, top: top, bottom: bottom, margins: margins)
   }
 
   func limitVertically(
-    top top: CGFloat = 0,
+    top: CGFloat = 0,
     bottom: CGFloat = 0,
     margins: Bool = false
   ) -> ConstraintsDictionary {
-    let superview = view!.superview
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return limitVerticallyInView(superview!, top: top, bottom: bottom, margins: margins)
+    return limitVertically(in: superview!, top: top, bottom: bottom, margins: margins)
   }
 
   // MARK: Centering
 
-  func center(offset: CGPoint = CGPoint.zero) -> ConstraintsDictionary {
-    let superview = view!.superview
+  func center(with offset: CGPoint = CGPoint.zero) -> ConstraintsDictionary {
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return centerInView(superview!, offset: offset)
+    return center(in: superview!, offset: offset)
   }
 
-  func centerHorizontally(constant: CGFloat = 0) -> ConstraintsDictionary {
-    let superview = view!.superview
+  func centerHorizontally(with constant: CGFloat = 0) -> ConstraintsDictionary {
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return centerHorizontallyInView(superview!, constant: constant)
+    return centerHorizontally(in: superview!, constant: constant)
   }
 
-  func centerVertically(constant: CGFloat = 0) -> ConstraintsDictionary {
-    let superview = view!.superview
+  func centerVertically(with constant: CGFloat = 0) -> ConstraintsDictionary {
+    let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return centerVerticallyInView(superview!, constant: constant)
+    return centerVertically(in: superview!, constant: constant)
   }
 
 }

@@ -7,9 +7,6 @@
 //
 
 import XCTest
-
-
-
 @testable import LayoutHelper
 
 class LayoutHelperTests: XCTestCase {
@@ -27,11 +24,11 @@ class LayoutHelperTests: XCTestCase {
   func testSizeConstraints() {
     let view = UIView()
     let size = CGSize(width: 10, height: 20)
-    let constraints = view.autolayout.constrainedToSize(size)
+    let constraints = view.autolayout.constrained(to: size)
 
-    let _width = view.widthAnchor.constraintEqualToConstant(size.width)
-    let _height = view.heightAnchor.constraintEqualToConstant(size.height)
-    NSLayoutConstraint.activateConstraints([_width, _height])
+    let _width = view.widthAnchor.constraint(equalToConstant: size.width)
+    let _height = view.heightAnchor.constraint(equalToConstant: size.height)
+    NSLayoutConstraint.activate([_width, _height])
 
     XCTAssertTrue(compareConstraint(constraints[.Width]!, _width))
     XCTAssertTrue(compareConstraint(constraints[.Height]!, _height))
@@ -43,13 +40,13 @@ class LayoutHelperTests: XCTestCase {
     superview.addSubview(view)
 
     let edges = UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20)
-    let constraints = view.autolayout.fill(edges)
+    let constraints = view.autolayout.fill(to: edges)
 
-    let _top = view.topAnchor.constraintEqualToAnchor(superview.topAnchor, constant: edges.top)
-    let _leading = view.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor, constant: edges.left)
-    let _bottom = superview.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: edges.bottom)
-    let _trailing = superview.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: edges.right)
-    NSLayoutConstraint.activateConstraints([_top, _leading, _bottom, _trailing])
+    let _top = view.topAnchor.constraint(equalTo: superview.topAnchor, constant: edges.top)
+    let _leading = view.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: edges.left)
+    let _bottom = superview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: edges.bottom)
+    let _trailing = superview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: edges.right)
+    NSLayoutConstraint.activate([_top, _leading, _bottom, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
@@ -62,14 +59,14 @@ class LayoutHelperTests: XCTestCase {
     let superview = UIView()
     superview.addSubview(view)
 
-    let constraints = view.autolayout.fill(UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20), margins: true)
+    let constraints = view.autolayout.fill(to: UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20), margins: true)
     let margins = superview.layoutMarginsGuide
 
-    let _top = view.topAnchor.constraintEqualToAnchor(margins.topAnchor, constant: 5)
-    let _leading = view.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor, constant: 10)
-    let _bottom = margins.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: 15)
-    let _trailing = margins.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: 20)
-    NSLayoutConstraint.activateConstraints([_top, _leading, _bottom, _trailing])
+    let _top = view.topAnchor.constraint(equalTo: margins.topAnchor, constant: 5)
+    let _leading = view.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10)
+    let _bottom = margins.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 15)
+    let _trailing = margins.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20)
+    NSLayoutConstraint.activate([_top, _leading, _bottom, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
@@ -86,9 +83,9 @@ class LayoutHelperTests: XCTestCase {
     let trailing: CGFloat = 10
     let constraints = view.autolayout.fillHorizontally(leading: leading, trailing: trailing)
 
-    let _leading = view.leadingAnchor.constraintEqualToAnchor(superview.leadingAnchor, constant: leading)
-    let _trailing = superview.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: trailing)
-    NSLayoutConstraint.activateConstraints([_leading, _trailing])
+    let _leading = view.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: leading)
+    let _trailing = superview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: trailing)
+    NSLayoutConstraint.activate([_leading, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
     XCTAssertTrue(compareConstraint(constraints[.Trailing]!, _trailing))
@@ -104,9 +101,9 @@ class LayoutHelperTests: XCTestCase {
     let constraints = view.autolayout.fillHorizontally(leading: leading, trailing: trailing, margins: true)
     let margins = superview.layoutMarginsGuide
 
-    let _leading = view.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor, constant: leading)
-    let _trailing = margins.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: trailing)
-    NSLayoutConstraint.activateConstraints([_leading, _trailing])
+    let _leading = view.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: leading)
+    let _trailing = margins.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: trailing)
+    NSLayoutConstraint.activate([_leading, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
     XCTAssertTrue(compareConstraint(constraints[.Trailing]!, _trailing))
@@ -121,9 +118,9 @@ class LayoutHelperTests: XCTestCase {
     let bottom: CGFloat = 20
     let constraints = view.autolayout.fillVertically(top: top, bottom: bottom)
 
-    let _top = view.topAnchor.constraintEqualToAnchor(superview.topAnchor, constant: top)
-    let _bottom = superview.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: bottom)
-    NSLayoutConstraint.activateConstraints([_top, _bottom])
+    let _top = view.topAnchor.constraint(equalTo: superview.topAnchor, constant: top)
+    let _bottom = superview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom)
+    NSLayoutConstraint.activate([_top, _bottom])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Bottom]!, _bottom))
@@ -139,9 +136,9 @@ class LayoutHelperTests: XCTestCase {
     let constraints = view.autolayout.fillVertically(top: top, bottom: bottom, margins: true)
     let margins = superview.layoutMarginsGuide
 
-    let _top = view.topAnchor.constraintEqualToAnchor(margins.topAnchor, constant: top)
-    let _bottom = margins.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: bottom)
-    NSLayoutConstraint.activateConstraints([_top, _bottom])
+    let _top = view.topAnchor.constraint(equalTo: margins.topAnchor, constant: top)
+    let _bottom = margins.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom)
+    NSLayoutConstraint.activate([_top, _bottom])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Bottom]!, _bottom))
@@ -154,13 +151,13 @@ class LayoutHelperTests: XCTestCase {
     let superview = UIView()
     superview.addSubview(view)
 
-    let constraints = view.autolayout.limit(UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20))
+    let constraints = view.autolayout.limit(to: UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20))
 
-    let _top = view.topAnchor.constraintGreaterThanOrEqualToAnchor(superview.topAnchor, constant: 5)
-    let _leading = view.leadingAnchor.constraintGreaterThanOrEqualToAnchor(superview.leadingAnchor, constant: 10)
-    let _bottom = superview.bottomAnchor.constraintGreaterThanOrEqualToAnchor(view.bottomAnchor, constant: 15)
-    let _trailing = superview.trailingAnchor.constraintGreaterThanOrEqualToAnchor(view.trailingAnchor, constant: 20)
-    NSLayoutConstraint.activateConstraints([_top, _leading, _bottom, _trailing])
+    let _top = view.topAnchor.constraint(greaterThanOrEqualTo: superview.topAnchor, constant: 5)
+    let _leading = view.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: 10)
+    let _bottom = superview.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: 15)
+    let _trailing = superview.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 20)
+    NSLayoutConstraint.activate([_top, _leading, _bottom, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
@@ -173,14 +170,14 @@ class LayoutHelperTests: XCTestCase {
     let superview = UIView()
     superview.addSubview(view)
 
-    let constraints = view.autolayout.limit(UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20), margins: true)
+    let constraints = view.autolayout.limit(to: UIEdgeInsets(top: 5, left: 10, bottom: 15, right: 20), margins: true)
     let margins = superview.layoutMarginsGuide
 
-    let _top = view.topAnchor.constraintGreaterThanOrEqualToAnchor(margins.topAnchor, constant: 5)
-    let _leading = view.leadingAnchor.constraintGreaterThanOrEqualToAnchor(margins.leadingAnchor, constant: 10)
-    let _bottom = margins.bottomAnchor.constraintGreaterThanOrEqualToAnchor(view.bottomAnchor, constant: 15)
-    let _trailing = margins.trailingAnchor.constraintGreaterThanOrEqualToAnchor(view.trailingAnchor, constant: 20)
-    NSLayoutConstraint.activateConstraints([_top, _leading, _bottom, _trailing])
+    let _top = view.topAnchor.constraint(greaterThanOrEqualTo: margins.topAnchor, constant: 5)
+    let _leading = view.leadingAnchor.constraint(greaterThanOrEqualTo: margins.leadingAnchor, constant: 10)
+    let _bottom = margins.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: 15)
+    let _trailing = margins.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: 20)
+    NSLayoutConstraint.activate([_top, _leading, _bottom, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
@@ -197,9 +194,9 @@ class LayoutHelperTests: XCTestCase {
     let right: CGFloat = 10
     let constraints = view.autolayout.limitHorizontally(leading: left, trailing: right)
 
-    let _leading = view.leadingAnchor.constraintGreaterThanOrEqualToAnchor(superview.leadingAnchor, constant: left)
-    let _trailing = superview.trailingAnchor.constraintGreaterThanOrEqualToAnchor(view.trailingAnchor, constant: right)
-    NSLayoutConstraint.activateConstraints([_leading, _trailing])
+    let _leading = view.leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: left)
+    let _trailing = superview.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: right)
+    NSLayoutConstraint.activate([_leading, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
     XCTAssertTrue(compareConstraint(constraints[.Trailing]!, _trailing))
@@ -215,9 +212,9 @@ class LayoutHelperTests: XCTestCase {
     let constraints = view.autolayout.limitHorizontally(leading: left, trailing: right, margins: true)
     let margins = superview.layoutMarginsGuide
 
-    let _leading = view.leadingAnchor.constraintGreaterThanOrEqualToAnchor(margins.leadingAnchor, constant: left)
-    let _trailing = margins.trailingAnchor.constraintGreaterThanOrEqualToAnchor(view.trailingAnchor, constant: right)
-    NSLayoutConstraint.activateConstraints([_leading, _trailing])
+    let _leading = view.leadingAnchor.constraint(greaterThanOrEqualTo: margins.leadingAnchor, constant: left)
+    let _trailing = margins.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: right)
+    NSLayoutConstraint.activate([_leading, _trailing])
 
     XCTAssertTrue(compareConstraint(constraints[.Leading]!, _leading))
     XCTAssertTrue(compareConstraint(constraints[.Trailing]!, _trailing))
@@ -232,9 +229,9 @@ class LayoutHelperTests: XCTestCase {
     let bottom: CGFloat = 20
     let constraints = view.autolayout.limitVertically(top: top, bottom: bottom)
 
-    let _top = view.topAnchor.constraintGreaterThanOrEqualToAnchor(superview.topAnchor, constant: top)
-    let _bottom = superview.bottomAnchor.constraintGreaterThanOrEqualToAnchor(view.bottomAnchor, constant: bottom)
-    NSLayoutConstraint.activateConstraints([_top, _bottom])
+    let _top = view.topAnchor.constraint(greaterThanOrEqualTo: superview.topAnchor, constant: top)
+    let _bottom = superview.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: bottom)
+    NSLayoutConstraint.activate([_top, _bottom])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Bottom]!, _bottom))
@@ -250,9 +247,9 @@ class LayoutHelperTests: XCTestCase {
     let constraints = view.autolayout.limitVertically(top: top, bottom: bottom, margins: true)
     let margins = superview.layoutMarginsGuide
 
-    let _top = view.topAnchor.constraintGreaterThanOrEqualToAnchor(margins.topAnchor, constant: top)
-    let _bottom = margins.bottomAnchor.constraintGreaterThanOrEqualToAnchor(view.bottomAnchor, constant: bottom)
-    NSLayoutConstraint.activateConstraints([_top, _bottom])
+    let _top = view.topAnchor.constraint(greaterThanOrEqualTo: margins.topAnchor, constant: top)
+    let _bottom = margins.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: bottom)
+    NSLayoutConstraint.activate([_top, _bottom])
 
     XCTAssertTrue(compareConstraint(constraints[.Top]!, _top))
     XCTAssertTrue(compareConstraint(constraints[.Bottom]!, _bottom))
@@ -266,11 +263,11 @@ class LayoutHelperTests: XCTestCase {
     superview.addSubview(view)
 
     let offset = CGPoint(x: 5, y: 10)
-    let constraints = view.autolayout.center(offset)
+    let constraints = view.autolayout.center(with: offset)
 
-    let _centerX = view.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor, constant: offset.x)
-    let _centerY = view.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor, constant: offset.y)
-    NSLayoutConstraint.activateConstraints([_centerX, _centerY])
+    let _centerX = view.centerXAnchor.constraint(equalTo: superview.centerXAnchor, constant: offset.x)
+    let _centerY = view.centerYAnchor.constraint(equalTo: superview.centerYAnchor, constant: offset.y)
+    NSLayoutConstraint.activate([_centerX, _centerY])
 
     XCTAssertTrue(compareConstraint(constraints[.CenterX]!, _centerX))
     XCTAssertTrue(compareConstraint(constraints[.CenterY]!, _centerY))
@@ -282,10 +279,10 @@ class LayoutHelperTests: XCTestCase {
     superview.addSubview(view)
 
     let constant: CGFloat = 5
-    let constraints = view.autolayout.centerHorizontally(constant)
+    let constraints = view.autolayout.centerHorizontally(with: constant)
 
-    let _centerX = view.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor, constant: constant)
-    _centerX.active = true
+    let _centerX = view.centerXAnchor.constraint(equalTo: superview.centerXAnchor, constant: constant)
+    _centerX.isActive = true
 
     XCTAssertTrue(compareConstraint(constraints[.CenterX]!, _centerX))
   }
@@ -296,10 +293,10 @@ class LayoutHelperTests: XCTestCase {
     superview.addSubview(view)
 
     let constant: CGFloat = 10
-    let constraints = view.autolayout.centerVertically(constant)
+    let constraints = view.autolayout.centerVertically(with: constant)
 
-    let _centerY = view.centerYAnchor.constraintEqualToAnchor(superview.centerYAnchor, constant: constant)
-    _centerY.active = true
+    let _centerY = view.centerYAnchor.constraint(equalTo: superview.centerYAnchor, constant: constant)
+    _centerY.isActive = true
 
     XCTAssertTrue(compareConstraint(constraints[.CenterY]!, _centerY))
   }
@@ -312,16 +309,16 @@ class LayoutHelperTests: XCTestCase {
     superview.addSubview(view)
 
     let constraints = view.autolayout.centerHorizontally().deactivate()
-    let _centerX = view.centerXAnchor.constraintEqualToAnchor(superview.centerXAnchor)
+    let _centerX = view.centerXAnchor.constraint(equalTo: superview.centerXAnchor)
 
     XCTAssertTrue(compareConstraint(constraints[.CenterX]!, _centerX))
   }
 
   // MARK: Helpers
 
-  private func compareConstraint(lhs: NSLayoutConstraint, _ rhs: NSLayoutConstraint) -> Bool {
+  fileprivate func compareConstraint(_ lhs: NSLayoutConstraint, _ rhs: NSLayoutConstraint) -> Bool {
     return lhs.priority == rhs.priority
-    && lhs.active == rhs.active
+    && lhs.isActive == rhs.isActive
     && lhs.firstItem === rhs.firstItem
     && lhs.firstAttribute == rhs.firstAttribute
     && lhs.relation == rhs.relation

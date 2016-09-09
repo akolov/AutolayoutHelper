@@ -55,6 +55,7 @@ public extension UIView {
 
     // MARK: Size
 
+    @discardableResult
     func constrained(to size: CGSize) -> ConstraintsDictionary {
       precondition(theView != nil, "View must not be nil")
       return [
@@ -65,6 +66,7 @@ public extension UIView {
 
     // MARK: Edges
 
+    @discardableResult
     func fill(
       in view: UIView,
       inset: UIEdgeInsets = UIEdgeInsets.zero,
@@ -83,6 +85,7 @@ public extension UIView {
       return constraints
     }
 
+    @discardableResult
     func limit(
       in view: UIView,
       inset: UIEdgeInsets = UIEdgeInsets.zero,
@@ -103,6 +106,7 @@ public extension UIView {
 
     // MARK: Horizontal edges
 
+    @discardableResult
     func fillHorizontally(
       in view: UIView,
       leading: CGFloat = 0,
@@ -118,6 +122,7 @@ public extension UIView {
       ].activate()
     }
 
+    @discardableResult
     func limitHorizontally(
       in view: UIView,
       leading: CGFloat = 0,
@@ -135,6 +140,7 @@ public extension UIView {
 
     // MARK: Vertical edges
 
+    @discardableResult
     func fillVertically(
       in view: UIView,
       top: CGFloat = 0,
@@ -150,6 +156,7 @@ public extension UIView {
       ].activate()
     }
 
+    @discardableResult
     func limitVertically(
       in view: UIView,
       top: CGFloat = 0,
@@ -167,6 +174,7 @@ public extension UIView {
 
     // MARK: Centering
 
+    @discardableResult
     func center(in view: UIView, offset: CGPoint = CGPoint.zero) -> ConstraintsDictionary {
       var constraints = ConstraintsDictionary()
       centerHorizontally(in: view, constant: offset.x).forEach { (key, value) in constraints[key] = value }
@@ -174,6 +182,7 @@ public extension UIView {
       return constraints
     }
 
+    @discardableResult
     func centerHorizontally(in view: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       return [
@@ -181,6 +190,7 @@ public extension UIView {
       ].activate()
     }
 
+    @discardableResult
     func centerVertically(in view: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       return [
@@ -198,12 +208,14 @@ public extension UIView.Autolayout {
 
   // MARK: Edges
 
+  @discardableResult
   func fill(to inset: UIEdgeInsets = UIEdgeInsets.zero, margins: Bool = false) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
     return fill(in: superview!, inset: inset, margins: margins)
   }
 
+  @discardableResult
   func limit(to inset: UIEdgeInsets = UIEdgeInsets.zero, margins: Bool = false) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
@@ -212,6 +224,7 @@ public extension UIView.Autolayout {
 
   // MARK: Horizontal edges
 
+  @discardableResult
   func fillHorizontally(
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
@@ -222,6 +235,7 @@ public extension UIView.Autolayout {
     return fillHorizontally(in: superview!, leading: leading, trailing: trailing, margins: margins)
   }
 
+  @discardableResult
   func limitHorizontally(
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
@@ -234,6 +248,7 @@ public extension UIView.Autolayout {
 
   // MARK: Vertical edges
 
+  @discardableResult
   func fillVertically(
     top: CGFloat = 0,
     bottom: CGFloat = 0,
@@ -244,6 +259,7 @@ public extension UIView.Autolayout {
     return fillVertically(in: superview!, top: top, bottom: bottom, margins: margins)
   }
 
+  @discardableResult
   func limitVertically(
     top: CGFloat = 0,
     bottom: CGFloat = 0,
@@ -256,18 +272,21 @@ public extension UIView.Autolayout {
 
   // MARK: Centering
 
+  @discardableResult
   func center(with offset: CGPoint = CGPoint.zero) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
     return center(in: superview!, offset: offset)
   }
 
+  @discardableResult
   func centerHorizontally(with constant: CGFloat = 0) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
     return centerHorizontally(in: superview!, constant: constant)
   }
 
+  @discardableResult
   func centerVertically(with constant: CGFloat = 0) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")

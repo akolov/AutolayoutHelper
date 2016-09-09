@@ -12,14 +12,14 @@ import UIKit
 public protocol AutolayoutConstraintType: RawRepresentable { }
 
 public enum AutolayoutConstraint: String, AutolayoutConstraintType {
-  case Width = "width"
-  case Height = "height"
-  case Leading = "leading"
-  case Trailing = "trailing"
-  case Top = "top"
-  case Bottom = "bottom"
-  case CenterX = "centerX"
-  case CenterY = "centerY"
+  case width = "width"
+  case height = "height"
+  case leading = "leading"
+  case trailing = "trailing"
+  case top = "top"
+  case bottom = "bottom"
+  case centerX = "centerX"
+  case centerY = "centerY"
 }
 
 public extension Dictionary where Key: AutolayoutConstraintType, Value: NSLayoutConstraint {
@@ -58,8 +58,8 @@ public extension UIView {
     func constrained(to size: CGSize) -> ConstraintsDictionary {
       precondition(theView != nil, "View must not be nil")
       return [
-        .Width: theView!.widthAnchor.constraint(equalToConstant: size.width),
-        .Height: theView!.heightAnchor.constraint(equalToConstant: size.height)
+        .width: theView!.widthAnchor.constraint(equalToConstant: size.width),
+        .height: theView!.heightAnchor.constraint(equalToConstant: size.height)
       ].activate()
     }
 
@@ -113,8 +113,8 @@ public extension UIView {
       let leadingAnchor = margins ? view.layoutMarginsGuide.leadingAnchor : view.leadingAnchor
       let trailingAnchor = margins ? view.layoutMarginsGuide.trailingAnchor : view.trailingAnchor
       return [
-        .Leading: theView!.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading),
-        .Trailing: trailingAnchor.constraint(equalTo: theView!.trailingAnchor, constant: trailing)
+        .leading: theView!.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading),
+        .trailing: trailingAnchor.constraint(equalTo: theView!.trailingAnchor, constant: trailing)
       ].activate()
     }
 
@@ -128,8 +128,8 @@ public extension UIView {
       let leadingAnchor = margins ? view.layoutMarginsGuide.leadingAnchor : view.leadingAnchor
       let trailingAnchor = margins ? view.layoutMarginsGuide.trailingAnchor : view.trailingAnchor
       return [
-        .Leading: theView!.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: leading),
-        .Trailing: trailingAnchor.constraint(greaterThanOrEqualTo: theView!.trailingAnchor, constant: trailing)
+        .leading: theView!.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: leading),
+        .trailing: trailingAnchor.constraint(greaterThanOrEqualTo: theView!.trailingAnchor, constant: trailing)
       ].activate()
     }
 
@@ -145,8 +145,8 @@ public extension UIView {
       let topAnchor = margins ? view.layoutMarginsGuide.topAnchor : view.topAnchor
       let bottomAnchor = margins ? view.layoutMarginsGuide.bottomAnchor : view.bottomAnchor
       return [
-        .Top: theView!.topAnchor.constraint(equalTo: topAnchor, constant: top),
-        .Bottom: bottomAnchor.constraint(equalTo: theView!.bottomAnchor, constant: bottom)
+        .top: theView!.topAnchor.constraint(equalTo: topAnchor, constant: top),
+        .bottom: bottomAnchor.constraint(equalTo: theView!.bottomAnchor, constant: bottom)
       ].activate()
     }
 
@@ -160,8 +160,8 @@ public extension UIView {
       let topAnchor = margins ? view.layoutMarginsGuide.topAnchor : view.topAnchor
       let bottomAnchor = margins ? view.layoutMarginsGuide.bottomAnchor : view.bottomAnchor
       return [
-        .Top: theView!.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: top),
-        .Bottom: bottomAnchor.constraint(greaterThanOrEqualTo: theView!.bottomAnchor, constant: bottom)
+        .top: theView!.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: top),
+        .bottom: bottomAnchor.constraint(greaterThanOrEqualTo: theView!.bottomAnchor, constant: bottom)
       ].activate()
     }
 
@@ -177,14 +177,14 @@ public extension UIView {
     func centerHorizontally(in view: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       return [
-        .CenterX: theView!.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: constant)
+        .centerX: theView!.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: constant)
       ].activate()
     }
 
     func centerVertically(in view: UIView, constant: CGFloat = 0) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       return [
-        .CenterY: theView!.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant)
+        .centerY: theView!.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant)
       ].activate()
     }
 

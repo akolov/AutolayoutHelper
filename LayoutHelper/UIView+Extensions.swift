@@ -56,11 +56,20 @@ public extension UIView {
     // MARK: Size
 
     @discardableResult
-    public func constrained(to size: CGSize) -> ConstraintsDictionary {
+    public func constrained(
+      to size: CGSize,
+      priority: UILayoutPriority = UILayoutPriorityRequired
+    ) -> ConstraintsDictionary {
       precondition(theView != nil, "View must not be nil")
+      let widthConstraint = theView!.widthAnchor.constraint(equalToConstant: size.width)
+      let heightConstraint = theView!.heightAnchor.constraint(equalToConstant: size.height)
+
+      widthConstraint.priority = priority
+      heightConstraint.priority = priority
+
       return [
-        .width: theView!.widthAnchor.constraint(equalToConstant: size.width),
-        .height: theView!.heightAnchor.constraint(equalToConstant: size.height)
+        .width: widthConstraint,
+        .height: heightConstraint
       ].activate()
     }
 
@@ -69,16 +78,23 @@ public extension UIView {
     @discardableResult
     public func fill(
       in view: UIView,
-      inset: UIEdgeInsets = UIEdgeInsets.zero,
-      margins: Bool = false
+      inset: UIEdgeInsets = .zero,
+      margins: Bool = false,
+      priority: UILayoutPriority = UILayoutPriorityRequired
     ) -> ConstraintsDictionary {
       var constraints = ConstraintsDictionary()
 
-      fillHorizontally(in: view, leading: inset.left, trailing: inset.right, margins: margins).forEach {
+      fillHorizontally(
+        in: view,
+        leading: inset.left,
+        trailing: inset.right,
+        margins: margins,
+        priority: priority
+      ).forEach {
         (key, value) in constraints[key] = value
       }
 
-      fillVertically(in: view, top: inset.top, bottom: inset.bottom, margins: margins).forEach {
+      fillVertically(in: view, top: inset.top, bottom: inset.bottom, margins: margins, priority: priority).forEach {
         (key, value) in constraints[key] = value
       }
 
@@ -88,16 +104,23 @@ public extension UIView {
     @discardableResult
     public func limit(
       in view: UIView,
-      inset: UIEdgeInsets = UIEdgeInsets.zero,
-      margins: Bool = false
+      inset: UIEdgeInsets = .zero,
+      margins: Bool = false,
+      priority: UILayoutPriority = UILayoutPriorityRequired
     ) -> ConstraintsDictionary {
       var constraints = ConstraintsDictionary()
 
-      limitHorizontally(in: view, leading: inset.left, trailing: inset.right, margins: margins).forEach {
+      limitHorizontally(
+        in: view,
+        leading: inset.left,
+        trailing: inset.right,
+        margins: margins,
+        priority: priority
+      ).forEach {
         (key, value) in constraints[key] = value
       }
 
-      limitVertically(in: view, top: inset.top, bottom: inset.bottom, margins: margins).forEach {
+      limitVertically(in: view, top: inset.top, bottom: inset.bottom, margins: margins, priority: priority).forEach {
         (key, value) in constraints[key] = value
       }
 
@@ -111,14 +134,21 @@ public extension UIView {
       in view: UIView,
       leading: CGFloat = 0,
       trailing: CGFloat = 0,
-      margins: Bool = false
+      margins: Bool = false,
+      priority: UILayoutPriority = UILayoutPriorityRequired
     ) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       let leadingAnchor = margins ? view.layoutMarginsGuide.leadingAnchor : view.leadingAnchor
       let trailingAnchor = margins ? view.layoutMarginsGuide.trailingAnchor : view.trailingAnchor
+      let leadingConstraint = theView!.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading)
+      let trailingConstraint = trailingAnchor.constraint(equalTo: theView!.trailingAnchor, constant: trailing)
+
+      leadingConstraint.priority = priority
+      trailingConstraint.priority = priority
+
       return [
-        .leading: theView!.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading),
-        .trailing: trailingAnchor.constraint(equalTo: theView!.trailingAnchor, constant: trailing)
+        .leading: leadingConstraint,
+        .trailing: trailingConstraint
       ].activate()
     }
 
@@ -127,14 +157,23 @@ public extension UIView {
       in view: UIView,
       leading: CGFloat = 0,
       trailing: CGFloat = 0,
-      margins: Bool = false
+      margins: Bool = false,
+      priority: UILayoutPriority = UILayoutPriorityRequired
     ) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       let leadingAnchor = margins ? view.layoutMarginsGuide.leadingAnchor : view.leadingAnchor
       let trailingAnchor = margins ? view.layoutMarginsGuide.trailingAnchor : view.trailingAnchor
+      let leadingConstraint = theView!.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: leading)
+      let trailingConstraint = trailingAnchor.constraint(
+        greaterThanOrEqualTo: theView!.trailingAnchor, constant: trailing
+      )
+
+      leadingConstraint.priority = priority
+      trailingConstraint.priority = priority
+
       return [
-        .leading: theView!.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: leading),
-        .trailing: trailingAnchor.constraint(greaterThanOrEqualTo: theView!.trailingAnchor, constant: trailing)
+        .leading: leadingConstraint,
+        .trailing: trailingConstraint
       ].activate()
     }
 
@@ -145,14 +184,21 @@ public extension UIView {
       in view: UIView,
       top: CGFloat = 0,
       bottom: CGFloat = 0,
-      margins: Bool = false
+      margins: Bool = false,
+      priority: UILayoutPriority = UILayoutPriorityRequired
     ) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       let topAnchor = margins ? view.layoutMarginsGuide.topAnchor : view.topAnchor
       let bottomAnchor = margins ? view.layoutMarginsGuide.bottomAnchor : view.bottomAnchor
+      let topConstraint = theView!.topAnchor.constraint(equalTo: topAnchor, constant: top)
+      let bottomConstraint = bottomAnchor.constraint(equalTo: theView!.bottomAnchor, constant: bottom)
+
+      topConstraint.priority = priority
+      bottomConstraint.priority = priority
+
       return [
-        .top: theView!.topAnchor.constraint(equalTo: topAnchor, constant: top),
-        .bottom: bottomAnchor.constraint(equalTo: theView!.bottomAnchor, constant: bottom)
+        .top: topConstraint,
+        .bottom: bottomConstraint
       ].activate()
     }
 
@@ -161,14 +207,21 @@ public extension UIView {
       in view: UIView,
       top: CGFloat = 0,
       bottom: CGFloat = 0,
-      margins: Bool = false
+      margins: Bool = false,
+      priority: UILayoutPriority = UILayoutPriorityRequired
     ) -> ConstraintsDictionary {
       precondition(theView != nil, "View is nil")
       let topAnchor = margins ? view.layoutMarginsGuide.topAnchor : view.topAnchor
       let bottomAnchor = margins ? view.layoutMarginsGuide.bottomAnchor : view.bottomAnchor
+      let topConstraint = theView!.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: top)
+      let bottomConstraint = bottomAnchor.constraint(greaterThanOrEqualTo: theView!.bottomAnchor, constant: bottom)
+
+      topConstraint.priority = priority
+      bottomConstraint.priority = priority
+
       return [
-        .top: theView!.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: top),
-        .bottom: bottomAnchor.constraint(greaterThanOrEqualTo: theView!.bottomAnchor, constant: bottom)
+        .top: topConstraint,
+        .bottom: bottomConstraint
       ].activate()
     }
 
@@ -209,17 +262,25 @@ public extension UIView.Autolayout {
   // MARK: Edges
 
   @discardableResult
-  public func fill(to inset: UIEdgeInsets = UIEdgeInsets.zero, margins: Bool = false) -> ConstraintsDictionary {
+  public func fill(
+    to inset: UIEdgeInsets = .zero,
+    margins: Bool = false,
+    priority: UILayoutPriority = UILayoutPriorityRequired
+  ) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return fill(in: superview!, inset: inset, margins: margins)
+    return fill(in: superview!, inset: inset, margins: margins, priority: priority)
   }
 
   @discardableResult
-  public func limit(to inset: UIEdgeInsets = UIEdgeInsets.zero, margins: Bool = false) -> ConstraintsDictionary {
+  public func limit(
+    to inset: UIEdgeInsets = .zero,
+    margins: Bool = false,
+    priority: UILayoutPriority = UILayoutPriorityRequired
+  ) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return limit(in: superview!, inset: inset, margins: margins)
+    return limit(in: superview!, inset: inset, margins: margins, priority: priority)
   }
 
   // MARK: Horizontal edges
@@ -228,22 +289,24 @@ public extension UIView.Autolayout {
   public func fillHorizontally(
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
-    margins: Bool = false
+    margins: Bool = false,
+    priority: UILayoutPriority = UILayoutPriorityRequired
   ) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return fillHorizontally(in: superview!, leading: leading, trailing: trailing, margins: margins)
+    return fillHorizontally(in: superview!, leading: leading, trailing: trailing, margins: margins, priority: priority)
   }
 
   @discardableResult
   public func limitHorizontally(
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
-    margins: Bool = false
+    margins: Bool = false,
+    priority: UILayoutPriority = UILayoutPriorityRequired
   ) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return limitHorizontally(in: superview!, leading: leading, trailing: trailing, margins: margins)
+    return limitHorizontally(in: superview!, leading: leading, trailing: trailing, margins: margins, priority: priority)
   }
 
   // MARK: Vertical edges
@@ -252,22 +315,24 @@ public extension UIView.Autolayout {
   public func fillVertically(
     top: CGFloat = 0,
     bottom: CGFloat = 0,
-    margins: Bool = false
+    margins: Bool = false,
+    priority: UILayoutPriority = UILayoutPriorityRequired
   ) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return fillVertically(in: superview!, top: top, bottom: bottom, margins: margins)
+    return fillVertically(in: superview!, top: top, bottom: bottom, margins: margins, priority: priority)
   }
 
   @discardableResult
   public func limitVertically(
     top: CGFloat = 0,
     bottom: CGFloat = 0,
-    margins: Bool = false
+    margins: Bool = false,
+    priority: UILayoutPriority = UILayoutPriorityRequired
   ) -> ConstraintsDictionary {
     let superview = theView!.superview
     precondition(superview != nil, "Superview is nil")
-    return limitVertically(in: superview!, top: top, bottom: bottom, margins: margins)
+    return limitVertically(in: superview!, top: top, bottom: bottom, margins: margins, priority: priority)
   }
 
   // MARK: Centering

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA3834DB1D00182700C55747"
-               BuildableName = "LayoutHelper.framework"
-               BlueprintName = "LayoutHelper"
-               ReferencedContainer = "container:LayoutHelper.xcodeproj">
+               BuildableName = "AutolayoutHelper.framework"
+               BlueprintName = "AutolayoutHelper"
+               ReferencedContainer = "container:AutolayoutHelper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA3834E51D00182700C55747"
-               BuildableName = "LayoutHelperTests.xctest"
-               BlueprintName = "LayoutHelperTests"
-               ReferencedContainer = "container:LayoutHelper.xcodeproj">
+               BuildableName = "AutolayoutHelperTests.xctest"
+               BlueprintName = "AutolayoutHelperTests"
+               ReferencedContainer = "container:AutolayoutHelper.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA3834DB1D00182700C55747"
-            BuildableName = "LayoutHelper.framework"
-            BlueprintName = "LayoutHelper"
-            ReferencedContainer = "container:LayoutHelper.xcodeproj">
+            BuildableName = "AutolayoutHelper.framework"
+            BlueprintName = "AutolayoutHelper"
+            ReferencedContainer = "container:AutolayoutHelper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA3834DB1D00182700C55747"
-            BuildableName = "LayoutHelper.framework"
-            BlueprintName = "LayoutHelper"
-            ReferencedContainer = "container:LayoutHelper.xcodeproj">
+            BuildableName = "AutolayoutHelper.framework"
+            BlueprintName = "AutolayoutHelper"
+            ReferencedContainer = "container:AutolayoutHelper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -84,9 +84,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA3834DB1D00182700C55747"
-            BuildableName = "LayoutHelper.framework"
-            BlueprintName = "LayoutHelper"
-            ReferencedContainer = "container:LayoutHelper.xcodeproj">
+            BuildableName = "AutolayoutHelper.framework"
+            BlueprintName = "AutolayoutHelper"
+            ReferencedContainer = "container:AutolayoutHelper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

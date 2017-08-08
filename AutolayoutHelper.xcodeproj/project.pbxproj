@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA3834E01D00182700C55747 /* LayoutHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3834DF1D00182700C55747 /* LayoutHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FA3834E71D00182700C55747 /* LayoutHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3834DC1D00182700C55747 /* LayoutHelper.framework */; };
-		FA3834EC1D00182700C55747 /* LayoutHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3834EB1D00182700C55747 /* LayoutHelperTests.swift */; };
-		FA3834F71D0018B200C55747 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3834F61D0018B200C55747 /* UIView+Extensions.swift */; };
+		FA3834E01D00182700C55747 /* AutolayoutHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3834DF1D00182700C55747 /* AutolayoutHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA3834E71D00182700C55747 /* AutolayoutHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3834DC1D00182700C55747 /* AutolayoutHelper.framework */; };
+		FA3834EC1D00182700C55747 /* AutolayoutHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3834EB1D00182700C55747 /* AutolayoutHelperTests.swift */; };
+		FA7723871F3A13FE00DD3F7E /* Autolayout+Fill.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7723861F3A13FE00DD3F7E /* Autolayout+Fill.swift */; };
+		FA7723891F3A145300DD3F7E /* ConstraintSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7723881F3A145300DD3F7E /* ConstraintSet.swift */; };
+		FA77238B1F3A2C3900DD3F7E /* Autolayout+Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77238A1F3A2C3900DD3F7E /* Autolayout+Limit.swift */; };
+		FA77238D1F3A2CED00DD3F7E /* Autolayout+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77238C1F3A2CED00DD3F7E /* Autolayout+Center.swift */; };
+		FA77238F1F3A2EFF00DD3F7E /* Autolayout+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77238E1F3A2EFF00DD3F7E /* Autolayout+Size.swift */; };
+		FA7723911F3A303500DD3F7E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7723901F3A303500DD3F7E /* UIView+Autolayout.swift */; };
+		FA7723931F3A380900DD3F7E /* Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7723921F3A380900DD3F7E /* Autolayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,13 +30,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FA3834DC1D00182700C55747 /* LayoutHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA3834DF1D00182700C55747 /* LayoutHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutHelper.h; sourceTree = "<group>"; };
+		FA3834DC1D00182700C55747 /* AutolayoutHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutolayoutHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3834DF1D00182700C55747 /* AutolayoutHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutolayoutHelper.h; sourceTree = "<group>"; };
 		FA3834E11D00182700C55747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA3834E61D00182700C55747 /* LayoutHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LayoutHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA3834EB1D00182700C55747 /* LayoutHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelperTests.swift; sourceTree = "<group>"; };
+		FA3834E61D00182700C55747 /* AutolayoutHelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutolayoutHelperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3834EB1D00182700C55747 /* AutolayoutHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutolayoutHelperTests.swift; sourceTree = "<group>"; };
 		FA3834ED1D00182700C55747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA3834F61D0018B200C55747 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		FA7723861F3A13FE00DD3F7E /* Autolayout+Fill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Autolayout+Fill.swift"; sourceTree = "<group>"; };
+		FA7723881F3A145300DD3F7E /* ConstraintSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintSet.swift; sourceTree = "<group>"; };
+		FA77238A1F3A2C3900DD3F7E /* Autolayout+Limit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Autolayout+Limit.swift"; sourceTree = "<group>"; };
+		FA77238C1F3A2CED00DD3F7E /* Autolayout+Center.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Autolayout+Center.swift"; sourceTree = "<group>"; };
+		FA77238E1F3A2EFF00DD3F7E /* Autolayout+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Autolayout+Size.swift"; sourceTree = "<group>"; };
+		FA7723901F3A303500DD3F7E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		FA7723921F3A380900DD3F7E /* Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Autolayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA3834E71D00182700C55747 /* LayoutHelper.framework in Frameworks */,
+				FA3834E71D00182700C55747 /* AutolayoutHelper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,8 +76,8 @@
 		FA3834DD1D00182700C55747 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA3834DC1D00182700C55747 /* LayoutHelper.framework */,
-				FA3834E61D00182700C55747 /* LayoutHelperTests.xctest */,
+				FA3834DC1D00182700C55747 /* AutolayoutHelper.framework */,
+				FA3834E61D00182700C55747 /* AutolayoutHelperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,8 +85,14 @@
 		FA3834DE1D00182700C55747 /* LayoutHelper */ = {
 			isa = PBXGroup;
 			children = (
-				FA3834DF1D00182700C55747 /* LayoutHelper.h */,
-				FA3834F61D0018B200C55747 /* UIView+Extensions.swift */,
+				FA3834DF1D00182700C55747 /* AutolayoutHelper.h */,
+				FA7723921F3A380900DD3F7E /* Autolayout.swift */,
+				FA7723861F3A13FE00DD3F7E /* Autolayout+Fill.swift */,
+				FA77238A1F3A2C3900DD3F7E /* Autolayout+Limit.swift */,
+				FA77238C1F3A2CED00DD3F7E /* Autolayout+Center.swift */,
+				FA77238E1F3A2EFF00DD3F7E /* Autolayout+Size.swift */,
+				FA7723881F3A145300DD3F7E /* ConstraintSet.swift */,
+				FA7723901F3A303500DD3F7E /* UIView+Autolayout.swift */,
 				FA3834E11D00182700C55747 /* Info.plist */,
 			);
 			path = LayoutHelper;
@@ -83,7 +101,7 @@
 		FA3834EA1D00182700C55747 /* LayoutHelperTests */ = {
 			isa = PBXGroup;
 			children = (
-				FA3834EB1D00182700C55747 /* LayoutHelperTests.swift */,
+				FA3834EB1D00182700C55747 /* AutolayoutHelperTests.swift */,
 				FA3834ED1D00182700C55747 /* Info.plist */,
 			);
 			path = LayoutHelperTests;
@@ -96,16 +114,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA3834E01D00182700C55747 /* LayoutHelper.h in Headers */,
+				FA3834E01D00182700C55747 /* AutolayoutHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		FA3834DB1D00182700C55747 /* LayoutHelper */ = {
+		FA3834DB1D00182700C55747 /* AutolayoutHelper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA3834F01D00182700C55747 /* Build configuration list for PBXNativeTarget "LayoutHelper" */;
+			buildConfigurationList = FA3834F01D00182700C55747 /* Build configuration list for PBXNativeTarget "AutolayoutHelper" */;
 			buildPhases = (
 				FA3834F81D00245900C55747 /* Swift Linter */,
 				FA3834D71D00182700C55747 /* Sources */,
@@ -117,14 +135,14 @@
 			);
 			dependencies = (
 			);
-			name = LayoutHelper;
+			name = AutolayoutHelper;
 			productName = LayoutHelper;
-			productReference = FA3834DC1D00182700C55747 /* LayoutHelper.framework */;
+			productReference = FA3834DC1D00182700C55747 /* AutolayoutHelper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		FA3834E51D00182700C55747 /* LayoutHelperTests */ = {
+		FA3834E51D00182700C55747 /* AutolayoutHelperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA3834F31D00182700C55747 /* Build configuration list for PBXNativeTarget "LayoutHelperTests" */;
+			buildConfigurationList = FA3834F31D00182700C55747 /* Build configuration list for PBXNativeTarget "AutolayoutHelperTests" */;
 			buildPhases = (
 				FA3834E21D00182700C55747 /* Sources */,
 				FA3834E31D00182700C55747 /* Frameworks */,
@@ -135,9 +153,9 @@
 			dependencies = (
 				FA3834E91D00182700C55747 /* PBXTargetDependency */,
 			);
-			name = LayoutHelperTests;
+			name = AutolayoutHelperTests;
 			productName = LayoutHelperTests;
-			productReference = FA3834E61D00182700C55747 /* LayoutHelperTests.xctest */;
+			productReference = FA3834E61D00182700C55747 /* AutolayoutHelperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -161,7 +179,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FA3834D61D00182600C55747 /* Build configuration list for PBXProject "LayoutHelper" */;
+			buildConfigurationList = FA3834D61D00182600C55747 /* Build configuration list for PBXProject "AutolayoutHelper" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -173,8 +191,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA3834DB1D00182700C55747 /* LayoutHelper */,
-				FA3834E51D00182700C55747 /* LayoutHelperTests */,
+				FA3834DB1D00182700C55747 /* AutolayoutHelper */,
+				FA3834E51D00182700C55747 /* AutolayoutHelperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -218,7 +236,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA3834F71D0018B200C55747 /* UIView+Extensions.swift in Sources */,
+				FA7723871F3A13FE00DD3F7E /* Autolayout+Fill.swift in Sources */,
+				FA7723911F3A303500DD3F7E /* UIView+Autolayout.swift in Sources */,
+				FA77238D1F3A2CED00DD3F7E /* Autolayout+Center.swift in Sources */,
+				FA77238F1F3A2EFF00DD3F7E /* Autolayout+Size.swift in Sources */,
+				FA77238B1F3A2C3900DD3F7E /* Autolayout+Limit.swift in Sources */,
+				FA7723931F3A380900DD3F7E /* Autolayout.swift in Sources */,
+				FA7723891F3A145300DD3F7E /* ConstraintSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA3834EC1D00182700C55747 /* LayoutHelperTests.swift in Sources */,
+				FA3834EC1D00182700C55747 /* AutolayoutHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +259,7 @@
 /* Begin PBXTargetDependency section */
 		FA3834E91D00182700C55747 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FA3834DB1D00182700C55747 /* LayoutHelper */;
+			target = FA3834DB1D00182700C55747 /* AutolayoutHelper */;
 			targetProxy = FA3834E81D00182700C55747 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -407,7 +431,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA3834D61D00182600C55747 /* Build configuration list for PBXProject "LayoutHelper" */ = {
+		FA3834D61D00182600C55747 /* Build configuration list for PBXProject "AutolayoutHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA3834EE1D00182700C55747 /* Debug */,
@@ -416,7 +440,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA3834F01D00182700C55747 /* Build configuration list for PBXNativeTarget "LayoutHelper" */ = {
+		FA3834F01D00182700C55747 /* Build configuration list for PBXNativeTarget "AutolayoutHelper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA3834F11D00182700C55747 /* Debug */,
@@ -425,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA3834F31D00182700C55747 /* Build configuration list for PBXNativeTarget "LayoutHelperTests" */ = {
+		FA3834F31D00182700C55747 /* Build configuration list for PBXNativeTarget "AutolayoutHelperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA3834F41D00182700C55747 /* Debug */,

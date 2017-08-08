@@ -3,10 +3,10 @@
 set -e
 
 export GITHUB_USER=akolov
-export GITHUB_REPO=UIViewLayoutHelper
+export GITHUB_REPO=AutolayoutHelper
 export GITHUB_TOKEN=$(cat ~/.github_token)
 
-PRODUCT_NAME=LayoutHelper
+PRODUCT_NAME=AutolayoutHelper
 TAG=$1
 
 carthage build --no-skip-current --platform iOS

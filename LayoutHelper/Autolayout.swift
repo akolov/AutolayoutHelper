@@ -19,6 +19,6 @@ public struct Autolayout {
     case bounds, margins, boundsOf(UIView), marginsOf(UIView)
   }
 
-  var view: UIView
+  weak var view: UIView!
 
 }

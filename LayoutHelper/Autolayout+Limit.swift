@@ -32,8 +32,8 @@ public extension Autolayout {
   @discardableResult
   public func limitHorizontally(
     inside guides: Autolayout.Guides = .bounds,
-    leading: CGFloat,
-    trailing: CGFloat,
+    leading: CGFloat = 0,
+    trailing: CGFloat = 0,
     identifier: String? = nil
   ) -> HorizontalFillConstraintSet {
     let leadingAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
@@ -70,8 +70,8 @@ public extension Autolayout {
   @discardableResult
   public func limitVertically(
     inside guides: Autolayout.Guides = .bounds,
-    top: CGFloat,
-    bottom: CGFloat,
+    top: CGFloat = 0,
+    bottom: CGFloat = 0,
     identifier: String? = nil
   ) -> VerticalFillConstraintSet {
     let topAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>

@@ -34,8 +34,8 @@ public struct AxialConstraintSet: ConstraintSet {
     return self
   }
 
-  let horizontal: NSLayoutConstraint
-  let vertical: NSLayoutConstraint
+  public let horizontal: NSLayoutConstraint
+  public let vertical: NSLayoutConstraint
 
 }
 
@@ -55,8 +55,8 @@ public struct HorizontalFillConstraintSet: ConstraintSet {
     return self
   }
 
-  let leading: NSLayoutConstraint
-  let trailing: NSLayoutConstraint
+  public let leading: NSLayoutConstraint
+  public let trailing: NSLayoutConstraint
 }
 
 public struct VerticalFillConstraintSet {
@@ -75,8 +75,8 @@ public struct VerticalFillConstraintSet {
     return self
   }
 
-  let top: NSLayoutConstraint
-  let bottom: NSLayoutConstraint
+  public let top: NSLayoutConstraint
+  public let bottom: NSLayoutConstraint
 }
 
 public struct FillConstraintSet {
@@ -95,22 +95,22 @@ public struct FillConstraintSet {
     return self
   }
 
-  let horizontal: HorizontalFillConstraintSet
-  let vertical: VerticalFillConstraintSet
+  public let horizontal: HorizontalFillConstraintSet
+  public let vertical: VerticalFillConstraintSet
 
-  var top: NSLayoutConstraint {
+  public var top: NSLayoutConstraint {
     return vertical.top
   }
 
-  var leading: NSLayoutConstraint {
+  public var leading: NSLayoutConstraint {
     return horizontal.leading
   }
 
-  var bottom: NSLayoutConstraint {
+  public var bottom: NSLayoutConstraint {
     return vertical.bottom
   }
 
-  var trailing: NSLayoutConstraint {
+  public var trailing: NSLayoutConstraint {
     return horizontal.trailing
   }
 

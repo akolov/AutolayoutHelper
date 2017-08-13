@@ -12,7 +12,7 @@ public extension Autolayout {
 
   @discardableResult
   public func fill(
-    inside guides: Autolayout.Guides = .bounds,
+    inside guides: Guides = .bounds,
     insets: UIEdgeInsets = .zero,
     priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
@@ -38,7 +38,7 @@ public extension Autolayout {
 
   @discardableResult
   public func fillHorizontally(
-    inside guides: Autolayout.Guides = .bounds,
+    inside guides: Guides = .bounds,
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
     priority: UILayoutPriority = UILayoutPriorityRequired,
@@ -79,7 +79,7 @@ public extension Autolayout {
 
   @discardableResult
   public func fillVertically(
-    inside guides: Autolayout.Guides = .bounds,
+    inside guides: Guides = .bounds,
     top: CGFloat = 0,
     bottom: CGFloat = 0,
     priority: UILayoutPriority = UILayoutPriorityRequired,

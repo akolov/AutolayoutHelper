@@ -15,8 +15,23 @@ public struct Autolayout {
     view.translatesAutoresizingMaskIntoConstraints = false
   }
 
+  public enum SuperviewGuides {
+    case bounds, margins
+  }
+
   public enum Guides {
+
     case bounds, margins, boundsOf(UIView), marginsOf(UIView)
+
+    init(superviewGuides: SuperviewGuides) {
+      switch superviewGuides {
+      case .bounds:
+        self = .bounds
+      case .margins:
+        self = .margins
+      }
+    }
+
   }
 
   weak var view: UIView!

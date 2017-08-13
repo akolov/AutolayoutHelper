@@ -54,7 +54,7 @@ extension Autolayout {
   public func centerHorizontally(parent: UIView, offset: CGFloat = 0, identifier: String? = nil) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
     let constraint = view.centerXAnchor.constraint(equalTo: parent.centerXAnchor, constant: offset)
-    constraint.identifier = "centerHorizontally\(_identifier))"
+    constraint.identifier = "centerHorizontally\(_identifier)"
     constraint.isActive = true
     return constraint
   }
@@ -63,7 +63,7 @@ extension Autolayout {
   public func centerVertically(parent: UIView, offset: CGFloat = 0, identifier: String? = nil) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
     let constraint = view.centerYAnchor.constraint(equalTo: parent.centerYAnchor, constant: offset)
-    constraint.identifier = "centerVertically\(_identifier))"
+    constraint.identifier = "centerVertically\(_identifier)"
     constraint.isActive = true
     return constraint
   }

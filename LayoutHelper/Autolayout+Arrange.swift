@@ -74,6 +74,7 @@ public extension Autolayout {
     var chainConstraints = [NSLayoutConstraint]()
     if subviews.count > 1 {
       for i in 1..<subviews.count {
+        view.addSubview(leading)
         let leading = subviews[i]
         let trailing = subviews[i - 1]
         let constraint = leading.leadingAnchor.constraint(equalTo: trailing.trailingAnchor, constant: spacing)
@@ -160,6 +161,7 @@ public extension Autolayout {
       for i in 1..<subviews.count {
         let top = subviews[i]
         let bottom = subviews[i - 1]
+        view.addSubview(top)
         let constraint = top.bottomAnchor.constraint(equalTo: bottom.topAnchor, constant: spacing)
         constraint.identifier = "arrangedSubviews.chaining"
         constraint.priority = priority

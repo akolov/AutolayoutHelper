@@ -11,11 +11,49 @@ import UIKit
 public extension Autolayout {
 
   @discardableResult
-  public func size(to size: CGSize) -> AxialConstraintSet {
-    return AxialConstraintSet(
-      horizontal: view.widthAnchor.constraint(equalToConstant: size.width),
-      vertical: view.heightAnchor.constraint(equalToConstant: size.height)
-    ).activate()
+  public func size(
+    to size: CGSize,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> AxialConstraintSet {
+    let sizeSet = AxialConstraintSet(
+      horizontal: width(to: size.width, priority: priority),
+      vertical: height(to: size.height, priority: priority)
+    )
+
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    sizeSet.horizontal.identifier = "size.width\(_identifier)"
+    sizeSet.vertical.identifier = "size.height\(_identifier)"
+
+    return sizeSet
+  }
+
+  @discardableResult
+  public func width(
+    to constant: CGFloat,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    let constraint = view.widthAnchor.constraint(equalToConstant: constant)
+    constraint.priority = priority
+    constraint.identifier = "width\(_identifier)"
+    constraint.isActive = true
+    return constraint
+  }
+
+  @discardableResult
+  public func height(
+    to constant: CGFloat,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    let constraint = view.heightAnchor.constraint(equalToConstant: constant)
+    constraint.priority = priority
+    constraint.identifier = "height\(_identifier)"
+    constraint.isActive = true
+    return constraint
   }
 
 }

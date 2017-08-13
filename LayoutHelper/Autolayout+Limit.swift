@@ -14,15 +14,22 @@ public extension Autolayout {
   public func limit(
     inside guides: Autolayout.Guides = .bounds,
     insets: UIEdgeInsets = .zero,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> FillConstraintSet {
     let _identifier = identifier.map { "(\($0))" } ?? ""
 
-    let horizontalSet = limitHorizontally(inside: guides, leading: insets.left, trailing: insets.right)
+    let horizontalSet = limitHorizontally(
+      inside: guides,
+      leading: insets.left,
+      trailing: insets.right,
+      priority: priority
+    )
+
     horizontalSet.leading.identifier = "limit.leading\(_identifier)"
     horizontalSet.trailing.identifier = "limit.trailing\(_identifier)"
 
-    let verticalSet = limitVertically(inside: guides, top: insets.top, bottom: insets.bottom)
+    let verticalSet = limitVertically(inside: guides, top: insets.top, bottom: insets.bottom, priority: priority)
     verticalSet.top.identifier = "limit.top\(_identifier)"
     verticalSet.bottom.identifier = "limit.bottom\(_identifier)"
 
@@ -34,6 +41,7 @@ public extension Autolayout {
     inside guides: Autolayout.Guides = .bounds,
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> HorizontalFillConstraintSet {
     let leadingAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
@@ -59,9 +67,11 @@ public extension Autolayout {
     let _identifier = identifier.map { "(\($0))" } ?? ""
 
     let leadingConstraint = view.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: leading)
+    leadingConstraint.priority = priority
     leadingConstraint.identifier = "limitHorizontally.leading\(_identifier)"
 
     let trailingConstraint = trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor, constant: trailing)
+    trailingConstraint.priority = priority
     trailingConstraint.identifier = "limitHorizontally.trailing\(_identifier)"
 
     return HorizontalFillConstraintSet(leading: leadingConstraint, trailing: trailingConstraint).activate()
@@ -72,6 +82,7 @@ public extension Autolayout {
     inside guides: Autolayout.Guides = .bounds,
     top: CGFloat = 0,
     bottom: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> VerticalFillConstraintSet {
     let topAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>
@@ -97,9 +108,11 @@ public extension Autolayout {
     let _identifier = identifier.map { "(\($0))" } ?? ""
 
     let topConstraint = view.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: top)
+    topConstraint.priority = priority
     topConstraint.identifier = "limitVertically.top\(_identifier)"
 
     let bottomConstraint = bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: bottom)
+    bottomConstraint.priority = priority
     bottomConstraint.identifier = "limitVertically.bottom\(_identifier)"
 
     return VerticalFillConstraintSet(top: topConstraint, bottom: bottomConstraint).activate()

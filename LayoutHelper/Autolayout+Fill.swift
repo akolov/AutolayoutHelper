@@ -14,15 +14,22 @@ public extension Autolayout {
   public func fill(
     inside guides: Autolayout.Guides = .bounds,
     insets: UIEdgeInsets = .zero,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> FillConstraintSet {
     let _identifier = identifier.map { "(\($0))" } ?? ""
 
-    let horizontalSet = fillHorizontally(inside: guides, leading: insets.left, trailing: insets.right)
+    let horizontalSet = fillHorizontally(
+      inside: guides,
+      leading: insets.left,
+      trailing: insets.right,
+      priority: priority
+    )
+
     horizontalSet.leading.identifier = "fill.leading\(_identifier)"
     horizontalSet.trailing.identifier = "fill.trailing\(_identifier)"
 
-    let verticalSet = fillVertically(inside: guides, top: insets.top, bottom: insets.bottom)
+    let verticalSet = fillVertically(inside: guides, top: insets.top, bottom: insets.bottom, priority: priority)
     verticalSet.top.identifier = "fill.top\(_identifier)"
     verticalSet.bottom.identifier = "fill.bottom\(_identifier)"
 
@@ -34,6 +41,7 @@ public extension Autolayout {
     inside guides: Autolayout.Guides = .bounds,
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> HorizontalFillConstraintSet {
     let leadingAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
@@ -59,9 +67,11 @@ public extension Autolayout {
     let _identifier = identifier.map { "(\($0))" } ?? ""
 
     let leadingConstraint = view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading)
+    leadingConstraint.priority = priority
     leadingConstraint.identifier = "fillHorizontally.leading\(_identifier)"
 
     let trailingConstraint = trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: trailing)
+    trailingConstraint.priority = priority
     trailingConstraint.identifier = "fillHorizontally.trailing\(_identifier)"
 
     return HorizontalFillConstraintSet(leading: leadingConstraint, trailing: trailingConstraint).activate()
@@ -72,6 +82,7 @@ public extension Autolayout {
     inside guides: Autolayout.Guides = .bounds,
     top: CGFloat = 0,
     bottom: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> VerticalFillConstraintSet {
     let topAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>
@@ -97,9 +108,11 @@ public extension Autolayout {
     let _identifier = identifier.map { "(\($0))" } ?? ""
 
     let topConstraint = view.topAnchor.constraint(equalTo: topAnchor, constant: top)
+    topConstraint.priority = priority
     topConstraint.identifier = "fillVertically.top\(_identifier)"
 
     let bottomConstraint = bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom)
+    bottomConstraint.priority = priority
     bottomConstraint.identifier = "fillVertically.bottom\(_identifier)"
 
     return VerticalFillConstraintSet(top: topConstraint, bottom: bottomConstraint).activate()

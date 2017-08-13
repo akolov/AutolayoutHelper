@@ -13,21 +13,31 @@ import UIKit
 extension Autolayout {
 
   @discardableResult
-  public func center(offset: UIOffset = .zero, identifier: String? = nil) -> AxialConstraintSet {
+  public func center(
+    offset: UIOffset = .zero,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> AxialConstraintSet {
     precondition(view.superview != nil, "Superview must not be nil")
-    return center(parent: view.superview!, offset: offset)
+    return center(parent: view.superview!, offset: offset, priority: priority)
   }
 
   @discardableResult
-  public func centerHorizontally(offset: CGFloat = 0) -> NSLayoutConstraint {
+  public func centerHorizontally(
+    offset: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired
+  ) -> NSLayoutConstraint {
     precondition(view.superview != nil, "Superview must not be nil")
-    return centerHorizontally(parent: view.superview!, offset: offset)
+    return centerHorizontally(parent: view.superview!, offset: offset, priority: priority)
   }
 
   @discardableResult
-  public func centerVertically(offset: CGFloat = 0) -> NSLayoutConstraint {
+  public func centerVertically(
+    offset: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired
+  ) -> NSLayoutConstraint {
     precondition(view.superview != nil, "Superview must not be nil")
-    return centerVertically(parent: view.superview!, offset: offset)
+    return centerVertically(parent: view.superview!, offset: offset, priority: priority)
   }
 
 }
@@ -37,7 +47,12 @@ extension Autolayout {
 extension Autolayout {
 
   @discardableResult
-  public func center(parent: UIView, offset: UIOffset = .zero, identifier: String? = nil) -> AxialConstraintSet {
+  public func center(
+    parent: UIView,
+    offset: UIOffset = .zero,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> AxialConstraintSet {
     let _identifier = identifier.map { "(\($0))" } ?? ""
     let centerSet = AxialConstraintSet(
       horizontal: centerHorizontally(parent: parent, offset: offset.horizontal),
@@ -51,18 +66,30 @@ extension Autolayout {
   }
 
   @discardableResult
-  public func centerHorizontally(parent: UIView, offset: CGFloat = 0, identifier: String? = nil) -> NSLayoutConstraint {
+  public func centerHorizontally(
+    parent: UIView,
+    offset: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
     let constraint = view.centerXAnchor.constraint(equalTo: parent.centerXAnchor, constant: offset)
+    constraint.priority = priority
     constraint.identifier = "centerHorizontally\(_identifier)"
     constraint.isActive = true
     return constraint
   }
 
   @discardableResult
-  public func centerVertically(parent: UIView, offset: CGFloat = 0, identifier: String? = nil) -> NSLayoutConstraint {
+  public func centerVertically(
+    parent: UIView,
+    offset: CGFloat = 0,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
     let constraint = view.centerYAnchor.constraint(equalTo: parent.centerYAnchor, constant: offset)
+    constraint.priority = priority
     constraint.identifier = "centerVertically\(_identifier)"
     constraint.isActive = true
     return constraint

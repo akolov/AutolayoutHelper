@@ -57,6 +57,34 @@ public extension Autolayout {
   }
 
   @discardableResult
+  public func minWidth(
+    to constant: CGFloat,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    let constraint = view.widthAnchor.constraint(greaterThanOrEqualToConstant: constant)
+    constraint.priority = priority
+    constraint.identifier = "width\(_identifier)"
+    constraint.isActive = true
+    return constraint
+  }
+
+  @discardableResult
+  public func maxWidth(
+    to constant: CGFloat,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    let constraint = view.widthAnchor.constraint(lessThanOrEqualToConstant: constant)
+    constraint.priority = priority
+    constraint.identifier = "width\(_identifier)"
+    constraint.isActive = true
+    return constraint
+  }
+
+  @discardableResult
   public func height(
     to constant: CGFloat,
     priority: UILayoutPriority = UILayoutPriorityRequired,
@@ -64,6 +92,34 @@ public extension Autolayout {
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
     let constraint = view.heightAnchor.constraint(equalToConstant: constant)
+    constraint.priority = priority
+    constraint.identifier = "height\(_identifier)"
+    constraint.isActive = true
+    return constraint
+  }
+
+  @discardableResult
+  public func minHeight(
+    to constant: CGFloat,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    let constraint = view.heightAnchor.constraint(greaterThanOrEqualToConstant: constant)
+    constraint.priority = priority
+    constraint.identifier = "height\(_identifier)"
+    constraint.isActive = true
+    return constraint
+  }
+
+  @discardableResult
+  public func maxHeight(
+    to constant: CGFloat,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    let constraint = view.heightAnchor.constraint(lessThanOrEqualToConstant: constant)
     constraint.priority = priority
     constraint.identifier = "height\(_identifier)"
     constraint.isActive = true

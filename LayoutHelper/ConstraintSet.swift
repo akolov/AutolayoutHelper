@@ -18,6 +18,36 @@ public protocol ConstraintSet {
 
 }
 
+public struct ArrangedConstraintSet: ConstraintSet {
+
+  @discardableResult
+  public func activate() -> ArrangedConstraintSet {
+    leading.forEach { $0.isActive = true }
+    trailing.forEach { $0.isActive = true }
+    top.forEach { $0.isActive = true }
+    bottom.forEach { $0.isActive = true }
+    chain.forEach { $0.isActive = true }
+    return self
+  }
+
+  @discardableResult
+  public func deactivate() -> ArrangedConstraintSet {
+    leading.forEach { $0.isActive = false }
+    trailing.forEach { $0.isActive = false }
+    top.forEach { $0.isActive = false }
+    bottom.forEach { $0.isActive = false }
+    chain.forEach { $0.isActive = false }
+    return self
+  }
+
+  public let leading: [NSLayoutConstraint]
+  public let trailing: [NSLayoutConstraint]
+  public let top: [NSLayoutConstraint]
+  public let bottom: [NSLayoutConstraint]
+  public let chain: [NSLayoutConstraint]
+
+}
+
 public struct AxialConstraintSet: ConstraintSet {
 
   @discardableResult

@@ -17,12 +17,12 @@ public extension Autolayout {
     spacing: CGFloat = 0,
     insets: UIEdgeInsets = .zero,
     priority: UILayoutPriority = UILayoutPriorityRequired
-  ) {
+  ) -> ArrangedConstraintSet {
     switch axis {
     case .horizontal:
-      addHorizontallyArrangedSubviews(subviews, guides: guides, spacing: spacing, insets: insets)
+      return addHorizontallyArrangedSubviews(subviews, guides: guides, spacing: spacing, insets: insets)
     case .vertical:
-      addHorizontallyArrangedSubviews(subviews, guides: guides, spacing: spacing, insets: insets)
+      return addHorizontallyArrangedSubviews(subviews, guides: guides, spacing: spacing, insets: insets)
     }
   }
 
@@ -32,7 +32,8 @@ public extension Autolayout {
     spacing: CGFloat = 0,
     insets: UIEdgeInsets = .zero,
     priority: UILayoutPriority = UILayoutPriorityRequired
-  ) {
+  ) -> ArrangedConstraintSet {
+    var leadingConstraints = [NSLayoutConstraint]()
     if let first = subviews.first {
       view.addSubview(first)
 
@@ -48,8 +49,10 @@ public extension Autolayout {
       constraint.identifier = "arrangedSubviews.leading"
       constraint.priority = priority
       constraint.isActive = true
+      leadingConstraints.append(constraint)
     }
 
+    var trailingConstraints = [NSLayoutConstraint]()
     if let last = subviews.last {
       view.addSubview(last)
 
@@ -65,8 +68,10 @@ public extension Autolayout {
       constraint.identifier = "arrangedSubviews.trailing"
       constraint.priority = priority
       constraint.isActive = true
+      trailingConstraints.append(constraint)
     }
 
+    var chainConstraints = [NSLayoutConstraint]()
     if subviews.count > 1 {
       for i in 1..<subviews.count {
         let leading = subviews[i]
@@ -75,9 +80,12 @@ public extension Autolayout {
         constraint.identifier = "arrangedSubviews.chaining"
         constraint.priority = priority
         constraint.isActive = true
+        chainConstraints.append(constraint)
       }
     }
 
+    var topConstraints = [NSLayoutConstraint]()
+    var bottomConstraints = [NSLayoutConstraint]()
     for view in subviews {
       let constraintSet = view.autolayout.fillVertically(
         inside: Guides(superviewGuides: guides),
@@ -88,7 +96,18 @@ public extension Autolayout {
 
       constraintSet.top.identifier = "arrangedSubviews.top"
       constraintSet.bottom.identifier = "arrangedSubviews.bottom"
+
+      topConstraints.append(constraintSet.top)
+      bottomConstraints.append(constraintSet.bottom)
     }
+
+    return ArrangedConstraintSet(
+      leading: leadingConstraints,
+      trailing: trailingConstraints,
+      top: topConstraints,
+      bottom: bottomConstraints,
+      chain: chainConstraints
+    )
   }
 
   private func addVerticallyArrangedSubviews(
@@ -97,7 +116,8 @@ public extension Autolayout {
     spacing: CGFloat = 0,
     insets: UIEdgeInsets = .zero,
     priority: UILayoutPriority = UILayoutPriorityRequired
-  ) {
+  ) -> ArrangedConstraintSet {
+    var topConstraints = [NSLayoutConstraint]()
     if let first = subviews.first {
       view.addSubview(first)
 
@@ -113,8 +133,10 @@ public extension Autolayout {
       constraint.identifier = "arrangedSubviews.top"
       constraint.priority = priority
       constraint.isActive = true
+      topConstraints.append(constraint)
     }
 
+    var bottomConstraints = [NSLayoutConstraint]()
     if let last = subviews.last {
       view.addSubview(last)
 
@@ -130,8 +152,10 @@ public extension Autolayout {
       constraint.identifier = "arrangedSubviews.bottom"
       constraint.priority = priority
       constraint.isActive = true
+      bottomConstraints.append(constraint)
     }
 
+    var chainConstraints = [NSLayoutConstraint]()
     if subviews.count > 1 {
       for i in 1..<subviews.count {
         let top = subviews[i]
@@ -140,9 +164,12 @@ public extension Autolayout {
         constraint.identifier = "arrangedSubviews.chaining"
         constraint.priority = priority
         constraint.isActive = true
+        chainConstraints.append(constraint)
       }
     }
 
+    var leadingConstraints = [NSLayoutConstraint]()
+    var trailingConstraints = [NSLayoutConstraint]()
     for view in subviews {
       let constraintSet = view.autolayout.fillHorizontally(
         inside: Guides(superviewGuides: guides),
@@ -153,7 +180,18 @@ public extension Autolayout {
 
       constraintSet.leading.identifier = "arrangedSubviews.leading"
       constraintSet.trailing.identifier = "arrangedSubviews.trailing"
+
+      leadingConstraints.append(constraintSet.leading)
+      trailingConstraints.append(constraintSet.trailing)
     }
+
+    return ArrangedConstraintSet(
+      leading: leadingConstraints,
+      trailing: trailingConstraints,
+      top: topConstraints,
+      bottom: bottomConstraints,
+      chain: chainConstraints
+    )
   }
 
 }

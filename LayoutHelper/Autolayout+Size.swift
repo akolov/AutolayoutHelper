@@ -11,6 +11,20 @@ import UIKit
 public extension Autolayout {
 
   @discardableResult
+  public func aspectRatio(
+    ratio: CGFloat,
+    priority: UILayoutPriority = UILayoutPriorityRequired,
+    identifier: String? = nil
+  ) -> NSLayoutConstraint {
+    let _identifier = identifier.map { "(\($0))" } ?? ""
+    let constraint = view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: ratio)
+    constraint.priority = priority
+    constraint.identifier = "aspectRatio\(_identifier)"
+    constraint.isActive = true
+    return constraint
+  }
+
+  @discardableResult
   public func size(
     to size: CGSize,
     priority: UILayoutPriority = UILayoutPriorityRequired,

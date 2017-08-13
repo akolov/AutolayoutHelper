@@ -11,6 +11,17 @@ import XCTest
 
 class AutolayoutHelperTests: XCTestCase {
 
+  func testAspectRatioConstraint() {
+    let view = UIView()
+    let constraint = view.autolayout.aspectRatio(ratio: 1 / 2)
+
+    let _ratio = view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1 / 2)
+    NSLayoutConstraint.activate([_ratio])
+
+    XCTAssertEqual(view.constraints.count, 2)
+    XCTAssertTrue(compareConstraint(constraint, _ratio))
+  }
+
   func testSizeConstraints() {
     let view = UIView()
     let size = CGSize(width: 10, height: 20)

@@ -46,6 +46,15 @@ public struct ArrangedConstraintSet: ConstraintSet {
   public let bottom: [NSLayoutConstraint]
   public let chain: [NSLayoutConstraint]
 
+  var spacing: CGFloat {
+    get {
+      return chain.first?.constant ?? 0
+    }
+    set {
+      chain.forEach { $0.constant = newValue }
+    }
+  }
+
 }
 
 public struct AxialConstraintSet: ConstraintSet {

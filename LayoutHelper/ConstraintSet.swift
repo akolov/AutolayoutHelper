@@ -46,7 +46,7 @@ public struct ArrangedConstraintSet: ConstraintSet {
   public let bottom: [NSLayoutConstraint]
   public let chain: [NSLayoutConstraint]
 
-  var spacing: CGFloat {
+  public var spacing: CGFloat {
     get {
       return chain.first?.constant ?? 0
     }

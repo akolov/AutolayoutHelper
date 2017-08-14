@@ -38,6 +38,7 @@ public extension Autolayout {
       let leadingConstraint = view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: constant)
       leadingConstraint.priority = priority
       leadingConstraint.identifier = "snap.leading\(_identifier)"
+      leadingConstraint.isActive = true
     }
 
     if edges.contains(.trailing) {
@@ -59,6 +60,7 @@ public extension Autolayout {
       let trailingConstraint = trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: constant)
       trailingConstraint.priority = priority
       trailingConstraint.identifier = "snap.trailing\(_identifier)"
+      trailingConstraint.isActive = true
     }
 
     if edges.contains(.top) {
@@ -80,6 +82,7 @@ public extension Autolayout {
       let topConstraint = view.topAnchor.constraint(equalTo: topAnchor, constant: constant)
       topConstraint.priority = priority
       topConstraint.identifier = "snap.top\(_identifier)"
+      topConstraint.isActive = true
     }
 
     if edges.contains(.bottom) {
@@ -101,6 +104,7 @@ public extension Autolayout {
       let bottomConstraint = bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: constant)
       bottomConstraint.priority = priority
       bottomConstraint.identifier = "snap.bottom\(_identifier)"
+      bottomConstraint.isActive = true
     }
   }
 

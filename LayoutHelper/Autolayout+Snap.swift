@@ -10,6 +10,7 @@ import UIKit
 
 public extension Autolayout {
 
+  @discardableResult
   public func snap(
     to edges: Edge,
     constant: CGFloat = 0,

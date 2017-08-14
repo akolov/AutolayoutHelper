@@ -16,8 +16,9 @@ public extension Autolayout {
     guides: Guides = .bounds,
     priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
-  ) {
+  ) -> SnapConstraintSet {
     let _identifier = identifier.map { "(\($0))" } ?? ""
+    var constraintSet = SnapConstraintSet()
 
     if edges.contains(.leading) {
       let leadingAnchor: NSLayoutXAxisAnchor
@@ -39,6 +40,7 @@ public extension Autolayout {
       leadingConstraint.priority = priority
       leadingConstraint.identifier = "snap.leading\(_identifier)"
       leadingConstraint.isActive = true
+      constraintSet.constraints[Edge.leading.rawValue] = leadingConstraint
     }
 
     if edges.contains(.trailing) {
@@ -61,6 +63,7 @@ public extension Autolayout {
       trailingConstraint.priority = priority
       trailingConstraint.identifier = "snap.trailing\(_identifier)"
       trailingConstraint.isActive = true
+      constraintSet.constraints[Edge.trailing.rawValue] = trailingConstraint
     }
 
     if edges.contains(.top) {
@@ -83,6 +86,7 @@ public extension Autolayout {
       topConstraint.priority = priority
       topConstraint.identifier = "snap.top\(_identifier)"
       topConstraint.isActive = true
+      constraintSet.constraints[Edge.top.rawValue] = topConstraint
     }
 
     if edges.contains(.bottom) {
@@ -105,7 +109,10 @@ public extension Autolayout {
       bottomConstraint.priority = priority
       bottomConstraint.identifier = "snap.bottom\(_identifier)"
       bottomConstraint.isActive = true
+      constraintSet.constraints[Edge.bottom.rawValue] = bottomConstraint
     }
+
+    return constraintSet
   }
 
 }

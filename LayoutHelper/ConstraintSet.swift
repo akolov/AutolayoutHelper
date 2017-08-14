@@ -154,3 +154,21 @@ public struct FillConstraintSet {
   }
 
 }
+
+public struct SnapConstraintSet {
+
+  public func constraints(for edges: Autolayout.Edge) -> [NSLayoutConstraint] {
+    var _constraints = [NSLayoutConstraint]()
+
+    for edge in Autolayout.Edge.all {
+      if edges.contains(edge), let constraint = constraints[edge.rawValue] {
+        _constraints.append(constraint)
+      }
+    }
+
+    return _constraints
+  }
+
+  var constraints = [Int: NSLayoutConstraint]()
+
+}

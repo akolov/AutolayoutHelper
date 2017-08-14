@@ -28,6 +28,8 @@ public struct Autolayout {
     public static let top = Edge(rawValue: 1 << 2)
     public static let bottom = Edge(rawValue: 1 << 3)
 
+    static let all: [Edge] = [.leading, .trailing, .top, .bottom]
+
   }
 
   public enum SuperviewGuides {

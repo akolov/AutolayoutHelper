@@ -15,6 +15,21 @@ public struct Autolayout {
     view.translatesAutoresizingMaskIntoConstraints = false
   }
 
+  public struct Edge: OptionSet {
+
+    public init(rawValue: Int) {
+      self.rawValue = rawValue
+    }
+
+    public var rawValue: Int
+
+    public static let leading = Edge(rawValue: 1 << 0)
+    public static let trailing = Edge(rawValue: 1 << 1)
+    public static let top = Edge(rawValue: 1 << 2)
+    public static let bottom = Edge(rawValue: 1 << 3)
+
+  }
+
   public enum SuperviewGuides {
     case bounds, margins
   }

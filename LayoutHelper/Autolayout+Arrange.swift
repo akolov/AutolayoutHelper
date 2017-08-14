@@ -37,7 +37,7 @@ public extension Autolayout {
     if let first = subviews.first {
       view.addSubview(first)
 
-      let leadingAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
+      let leadingAnchor: NSLayoutXAxisAnchor
       switch guides {
       case .bounds:
         leadingAnchor = view.leadingAnchor
@@ -56,7 +56,7 @@ public extension Autolayout {
     if let last = subviews.last {
       view.addSubview(last)
 
-      let trailingAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
+      let trailingAnchor: NSLayoutXAxisAnchor
       switch guides {
       case .bounds:
         trailingAnchor = view.trailingAnchor
@@ -122,7 +122,7 @@ public extension Autolayout {
     if let first = subviews.first {
       view.addSubview(first)
 
-      let topAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>
+      let topAnchor: NSLayoutYAxisAnchor
       switch guides {
       case .bounds:
         topAnchor = view.topAnchor
@@ -141,7 +141,7 @@ public extension Autolayout {
     if let last = subviews.last {
       view.addSubview(last)
 
-      let bottomAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>
+      let bottomAnchor: NSLayoutYAxisAnchor
       switch guides {
       case .bounds:
         bottomAnchor = view.bottomAnchor

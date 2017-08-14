@@ -44,8 +44,8 @@ public extension Autolayout {
     priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> HorizontalFillConstraintSet {
-    let leadingAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
-    let trailingAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
+    let leadingAnchor: NSLayoutXAxisAnchor
+    let trailingAnchor: NSLayoutXAxisAnchor
 
     switch guides {
     case .bounds:
@@ -85,8 +85,8 @@ public extension Autolayout {
     priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil
   ) -> VerticalFillConstraintSet {
-    let topAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>
-    let bottomAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>
+    let topAnchor: NSLayoutYAxisAnchor
+    let bottomAnchor: NSLayoutYAxisAnchor
 
     switch guides {
     case .bounds:

@@ -18,6 +18,7 @@
 		FA77238F1F3A2EFF00DD3F7E /* Autolayout+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77238E1F3A2EFF00DD3F7E /* Autolayout+Size.swift */; };
 		FA7723911F3A303500DD3F7E /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7723901F3A303500DD3F7E /* UIView+Autolayout.swift */; };
 		FA7723931F3A380900DD3F7E /* Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7723921F3A380900DD3F7E /* Autolayout.swift */; };
+		FAA41BE11F41F2A0005DD4B8 /* Autolayout+Snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA41BE01F41F2A0005DD4B8 /* Autolayout+Snap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		FA77238E1F3A2EFF00DD3F7E /* Autolayout+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Autolayout+Size.swift"; sourceTree = "<group>"; };
 		FA7723901F3A303500DD3F7E /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		FA7723921F3A380900DD3F7E /* Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Autolayout.swift; sourceTree = "<group>"; };
+		FAA41BE01F41F2A0005DD4B8 /* Autolayout+Snap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Autolayout+Snap.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,10 +92,11 @@
 				FA3834DF1D00182700C55747 /* AutolayoutHelper.h */,
 				FA7723921F3A380900DD3F7E /* Autolayout.swift */,
 				FA2F81CE1F40C41B0033621E /* Autolayout+Arrange.swift */,
+				FA77238C1F3A2CED00DD3F7E /* Autolayout+Center.swift */,
 				FA7723861F3A13FE00DD3F7E /* Autolayout+Fill.swift */,
 				FA77238A1F3A2C3900DD3F7E /* Autolayout+Limit.swift */,
-				FA77238C1F3A2CED00DD3F7E /* Autolayout+Center.swift */,
 				FA77238E1F3A2EFF00DD3F7E /* Autolayout+Size.swift */,
+				FAA41BE01F41F2A0005DD4B8 /* Autolayout+Snap.swift */,
 				FA7723881F3A145300DD3F7E /* ConstraintSet.swift */,
 				FA7723901F3A303500DD3F7E /* UIView+Autolayout.swift */,
 				FA3834E11D00182700C55747 /* Info.plist */,
@@ -246,6 +249,7 @@
 				FA77238B1F3A2C3900DD3F7E /* Autolayout+Limit.swift in Sources */,
 				FA2F81CF1F40C41B0033621E /* Autolayout+Arrange.swift in Sources */,
 				FA7723931F3A380900DD3F7E /* Autolayout.swift in Sources */,
+				FAA41BE11F41F2A0005DD4B8 /* Autolayout+Snap.swift in Sources */,
 				FA7723891F3A145300DD3F7E /* ConstraintSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@ public extension Autolayout {
 
   public func snap(
     to edges: Edge,
-    constant: CGFloat,
+    constant: CGFloat = 0,
     guides: Guides = .bounds,
     priority: UILayoutPriority = UILayoutPriorityRequired,
     identifier: String? = nil

@@ -16,7 +16,7 @@ public extension Autolayout {
     guides: SuperviewGuides = .bounds,
     spacing: CGFloat = 0,
     insets: UIEdgeInsets = .zero,
-    priority: UILayoutPriority = UILayoutPriorityRequired
+    priority: UILayoutPriority = .required
   ) -> ArrangedConstraintSet {
     switch axis {
     case .horizontal:
@@ -31,7 +31,7 @@ public extension Autolayout {
     guides: SuperviewGuides,
     spacing: CGFloat = 0,
     insets: UIEdgeInsets = .zero,
-    priority: UILayoutPriority = UILayoutPriorityRequired
+    priority: UILayoutPriority = .required
   ) -> ArrangedConstraintSet {
     var leadingConstraints = [NSLayoutConstraint]()
     if let first = subviews.first {
@@ -116,7 +116,7 @@ public extension Autolayout {
     guides: SuperviewGuides,
     spacing: CGFloat = 0,
     insets: UIEdgeInsets = .zero,
-    priority: UILayoutPriority = UILayoutPriorityRequired
+    priority: UILayoutPriority = .required
   ) -> ArrangedConstraintSet {
     var topConstraints = [NSLayoutConstraint]()
     if let first = subviews.first {

@@ -15,7 +15,7 @@ public extension Autolayout {
     to edges: Edge,
     constant: CGFloat = 0,
     guides: Guides = .bounds,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> SnapConstraintSet {
     let _identifier = identifier.map { "(\($0))" } ?? ""

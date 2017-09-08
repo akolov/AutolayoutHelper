@@ -15,7 +15,7 @@ extension Autolayout {
   @discardableResult
   public func center(
     offset: UIOffset = .zero,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> AxialConstraintSet {
     precondition(view.superview != nil, "Superview must not be nil")
@@ -25,7 +25,7 @@ extension Autolayout {
   @discardableResult
   public func centerHorizontally(
     offset: CGFloat = 0,
-    priority: UILayoutPriority = UILayoutPriorityRequired
+    priority: UILayoutPriority = .required
   ) -> NSLayoutConstraint {
     precondition(view.superview != nil, "Superview must not be nil")
     return centerHorizontally(parent: view.superview!, offset: offset, priority: priority)
@@ -34,7 +34,7 @@ extension Autolayout {
   @discardableResult
   public func centerVertically(
     offset: CGFloat = 0,
-    priority: UILayoutPriority = UILayoutPriorityRequired
+    priority: UILayoutPriority = .required
   ) -> NSLayoutConstraint {
     precondition(view.superview != nil, "Superview must not be nil")
     return centerVertically(parent: view.superview!, offset: offset, priority: priority)
@@ -50,7 +50,7 @@ extension Autolayout {
   public func center(
     parent: UIView,
     offset: UIOffset = .zero,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> AxialConstraintSet {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -69,7 +69,7 @@ extension Autolayout {
   public func centerHorizontally(
     parent: UIView,
     offset: CGFloat = 0,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -84,7 +84,7 @@ extension Autolayout {
   public func centerVertically(
     parent: UIView,
     offset: CGFloat = 0,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""

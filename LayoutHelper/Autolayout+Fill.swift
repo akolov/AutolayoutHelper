@@ -14,7 +14,7 @@ public extension Autolayout {
   public func fill(
     inside guides: Guides = .bounds,
     insets: UIEdgeInsets = .zero,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> FillConstraintSet {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -41,7 +41,7 @@ public extension Autolayout {
     inside guides: Guides = .bounds,
     leading: CGFloat = 0,
     trailing: CGFloat = 0,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> HorizontalFillConstraintSet {
     let leadingAnchor: NSLayoutXAxisAnchor
@@ -82,7 +82,7 @@ public extension Autolayout {
     inside guides: Guides = .bounds,
     top: CGFloat = 0,
     bottom: CGFloat = 0,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> VerticalFillConstraintSet {
     let topAnchor: NSLayoutYAxisAnchor

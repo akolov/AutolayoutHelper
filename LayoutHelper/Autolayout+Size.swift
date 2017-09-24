@@ -13,7 +13,7 @@ public extension Autolayout {
   @discardableResult
   public func aspectRatio(
     ratio: CGFloat,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -27,7 +27,7 @@ public extension Autolayout {
   @discardableResult
   public func size(
     to size: CGSize,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> AxialConstraintSet {
     let sizeSet = AxialConstraintSet(
@@ -45,7 +45,7 @@ public extension Autolayout {
   @discardableResult
   public func width(
     to constant: CGFloat,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -59,7 +59,7 @@ public extension Autolayout {
   @discardableResult
   public func minWidth(
     to constant: CGFloat,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -73,7 +73,7 @@ public extension Autolayout {
   @discardableResult
   public func maxWidth(
     to constant: CGFloat,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -87,7 +87,7 @@ public extension Autolayout {
   @discardableResult
   public func height(
     to constant: CGFloat,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -101,7 +101,7 @@ public extension Autolayout {
   @discardableResult
   public func minHeight(
     to constant: CGFloat,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
@@ -115,7 +115,7 @@ public extension Autolayout {
   @discardableResult
   public func maxHeight(
     to constant: CGFloat,
-    priority: UILayoutPriority = UILayoutPriorityRequired,
+    priority: UILayoutPriority = .required,
     identifier: String? = nil
   ) -> NSLayoutConstraint {
     let _identifier = identifier.map { "(\($0))" } ?? ""
